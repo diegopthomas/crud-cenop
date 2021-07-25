@@ -1,20 +1,94 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Axios from 'axios'
 
 const CriarProcesso = () => {
+
+    const [cd_prf_und, setCd_prf_und] = useState("");
+    const [cd_agrup_prc, setCd_agrup_prc] = useState("");
+    const [cd_tip_prc, setCd_tip_prc] = useState("");
+    const [CD_TIP_ATVD, setCD_TIP_ATVD] = useState("");
+    const [cd_detalhe_ocr, setCd_detalhe_ocr] = useState("");
+    const [cd_cli, setCd_cli] = useState("");
+    const [identific1, setIdentific1] = useState("");
+    const [identific2, setIdentific2] = useState("");
+    const [identific3, setIdentific3] = useState("");
+
+    const cadastrar = () => {
+        Axios.post('http://localhost:5000/novoProtocolo', {
+            cd_prf_und: cd_prf_und, 
+            cd_agrup_prc: cd_agrup_prc, 
+            cd_tip_prc: cd_tip_prc, 
+            CD_TIP_ATVD: CD_TIP_ATVD, 
+            cd_detalhe_ocr: cd_detalhe_ocr, 
+            cd_cli: cd_cli, 
+            identific1: identific1, 
+            identific2: identific2, 
+            identific3: identific3
+        }).then(() => {
+            console.log("Sucesso!");
+        })
+    }
+
     return (
 
         <div className="container">
-            <label>Prefixo solicitante</label>
-            <input type="text"></input>
-            <label>Tipo de atividade</label>
-            <label>Tipo e processo</label> 
-            <label></label>Código cliente
-            <label></label>Identificador 1
-            <label></label>Identificador 2
-            <label></label>Identificador 3
-
-
-        
+            <p>
+                <label>Prefixo solicitante</label>
+                <input type="text" onChange={(event) => {
+                    setCd_prf_und(event.target.value);
+                }}></input>
+            </p>
+            <p>
+                <label>Agrupador do Processo</label>
+                <input type="text" onChange={(event) => {
+                    setCd_agrup_prc(event.target.value);
+                }}></input>
+            </p>
+            <p>
+                <label>Processo</label>
+                <input type="text" onChange={(event) => {
+                    setCd_tip_prc(event.target.value);
+                }}></input>
+            </p>
+            <p>
+                <label>Atividade</label> 
+                <input type="text" onChange={(event) => {
+                    setCD_TIP_ATVD(event.target.value);
+                }}></input>
+            </p>
+            <p>
+                <label>Detalhe</label> 
+                <input type="text" onChange={(event) => {
+                    setCd_detalhe_ocr(event.target.value);
+                }}></input>
+            </p>
+            <p>
+                <label>Código do cliente</label>
+                <input type="text" onChange={(event) => {
+                    setCd_cli(event.target.value);
+                }}></input>
+            </p>
+            <p>
+                <label>Identificador 1</label>
+                <input type="text" onChange={(event) => {
+                    setIdentific1(event.target.value);
+                }}></input>
+            </p>
+            <p>
+                <label>Identificador 2</label>
+                <input type="text" onChange={(event) => {
+                    setIdentific2(event.target.value);
+                }}></input>
+            </p>
+            <p>
+                <label>Identificador 3</label>
+                <input type="text" onChange={(event) => {
+                    setIdentific3(event.target.value);
+                }}></input>
+            </p>
+            <p>
+                <button onClick={cadastrar}>Cadastrar</button>
+            </p>
         </div>
 
     )
