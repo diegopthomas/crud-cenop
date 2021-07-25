@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
+import '../assets/css/componentes/botao.css'
+import '../assets/css/componentes/inputs.css'
 
 const CriarProcesso = () => {
 
     const [cd_prf_und, setCd_prf_und] = useState("");
     const [cd_agrup_prc, setCd_agrup_prc] = useState("");
     const [cd_tip_prc, setCd_tip_prc] = useState("");
-    const [CD_TIP_ATVD, setCD_TIP_ATVD] = useState("");
+    const [cd_tip_atvd, setCd_tip_atvd] = useState("");
     const [cd_detalhe_ocr, setCd_detalhe_ocr] = useState("");
     const [cd_cli, setCd_cli] = useState("");
     const [identific1, setIdentific1] = useState("");
@@ -18,7 +20,7 @@ const CriarProcesso = () => {
             cd_prf_und: cd_prf_und, 
             cd_agrup_prc: cd_agrup_prc, 
             cd_tip_prc: cd_tip_prc, 
-            CD_TIP_ATVD: CD_TIP_ATVD, 
+            cd_tip_atvd: cd_tip_atvd, 
             cd_detalhe_ocr: cd_detalhe_ocr, 
             cd_cli: cd_cli, 
             identific1: identific1, 
@@ -31,7 +33,7 @@ const CriarProcesso = () => {
 
     return (
 
-        <div className="container">
+        <div className="formulario container input-container">
             <p>
                 <label>Prefixo solicitante</label>
                 <input type="text" onChange={(event) => {
@@ -53,7 +55,7 @@ const CriarProcesso = () => {
             <p>
                 <label>Atividade</label> 
                 <input type="text" onChange={(event) => {
-                    setCD_TIP_ATVD(event.target.value);
+                    setCd_tip_atvd(event.target.value);
                 }}></input>
             </p>
             <p>
@@ -87,7 +89,7 @@ const CriarProcesso = () => {
                 }}></input>
             </p>
             <p>
-                <button onClick={cadastrar}>Cadastrar</button>
+                <button className="botao" onClick={cadastrar}>Cadastrar</button>
             </p>
         </div>
 
