@@ -37,7 +37,7 @@ app.post('/novoProtocolo', (req, res) => {
 })
 
 app.get('/listaProcessos', (req, res) => {
-    db.query("SELECT * FROM tb_prc", (err, result) => {
+    db.query("SELECT * FROM tb_prc LIMIT 500", (err, result) => {
         if (err) {
             console.log(err);
         } else {

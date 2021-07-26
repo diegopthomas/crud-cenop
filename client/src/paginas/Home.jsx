@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import CriarProcesso from '../components/CriarProcesso'
+import { Button, Input, Table } from 'reactstrap';
+import { PencilSquare, PlusCircle, PlusSquare } from 'react-bootstrap-icons';
 import Axios from 'axios'
-import '../assets/css/base/base.css'
+
 
 
 const Home = () => {
@@ -17,6 +19,9 @@ const Home = () => {
   const [newIdentific1, setNewIdentific1] = useState("");
   const [newIdentific2, setNewIdentific2] = useState("");
   const [newIdentific3, setNewIdentific3] = useState("");
+
+  const [showComponent, setShowComponent] = useState(false)
+  const [showInput, setShowInput] = useState(false)
 
   useEffect(() => {
     Axios.get('http://localhost:5000/listaProcessos').then((response) => {
@@ -56,12 +61,24 @@ const Home = () => {
 
   return (
     <main>
-      <div className="container">
-        <h2 className="titulo-pagina">Lista de Processos</h2>
+      <header>
+        <h1>Lista de Processos</h1>
+      </header>
+      {
+      showComponent ? <CriarProcesso /> : null
+      }
+      <div>
+
+        <Button className="botao" size="lg" color="primary" onClick={
+          () => setShowComponent(!showComponent)
+        }><PlusCircle /> Incluir Novo Protocolo</Button>
+          
+        <Button className="botao" size="lg" color="warning" onClick={
+          () => setShowInput(!showInput)
+        }><PencilSquare /> Editar Dados</Button>
       </div>
-      <CriarProcesso />
-      <div className="container">
-        <table>
+
+        <Table>
           <thead>
             <tr>
               <th>Código do Processo</th>
@@ -74,6 +91,8 @@ const Home = () => {
               <th>Identificador 1</th>
               <th>Identificador 2</th>
               <th>Identificador 3</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -82,58 +101,76 @@ const Home = () => {
                 <tr key={key}>
                   <td> {val.CD_PRC} </td>
 
-                  <td><input onChange={(e) => {
+                  <td>
+                    {showInput ? <Input bsSize="sm" onChange={(e) => {
                     setNewCd_prf_und(e.target.value)
-                  }}></input> {val.CD_PRF_UND} </td>
+                    }}></Input> : null}
 
-                  <td><input onChange={(e) => {
+                    {val.CD_PRF_UND} </td>
+
+                  <td>
+
+                    {showInput ? <Input bsSize="sm" onChange={(e) => {
                     setNewCd_agrup_prc(e.target.value)
-                  }}></input> {val.CD_AGRUP_PRC} </td>
+                    }}></Input> : null}
+                    {val.CD_AGRUP_PRC} </td>
 
-                  <td><input onChange={(e) => {
+                  <td>
+
+                    {showInput ? <Input bsSize="sm" onChange={(e) => {
                     setNewCd_tip_prc(e.target.value)
-                  }}></input> {val.CD_TIP_PRC} </td>
+                    }}></Input> : null}
+                    {val.CD_TIP_PRC} </td>
 
-                  <td><input onChange={(e) => {
+                  <td>
+                    {showInput ? <Input bsSize="sm" onChange={(e) => {
                     setNewCd_tip_atvd(e.target.value)
-                  }}></input> {val.CD_TP_ATVD} </td>
+                    }}></Input> : null}
+                    {val.CD_TP_ATVD} </td>
 
-                  <td><input onChange={(e) => {
+                  <td>
+                    {showInput ? <Input bsSize="sm" onChange={(e) => {
                     setNewCd_detalhe_ocr(e.target.value)
-                  }}></input> {val.CD_DETALHE_OCR} </td>
+                    }}></Input> : null}
+                    {val.CD_DETALHE_OCR} </td>
 
-                  <td><input onChange={(e) => {
+                  <td>
+                    {showInput ? <Input bsSize="sm" onChange={(e) => {
                     setNewCd_cli(e.target.value)
-                  }}></input> {val.CD_CLI} </td>
+                    }}></Input> : null}
+                    {val.CD_CLI} </td>
 
-                  <td><input onChange={(e) => {
+                  <td>
+                    {showInput ? <Input bsSize="sm" onChange={(e) => {
                     setNewIdentific1(e.target.value)
-                  }}></input> {val.IDENTIFIC1} </td>
+                    }}></Input> : null}
+                    {val.IDENTIFIC1} </td>
 
-                  <td><input onChange={(e) => {
+                  <td>
+                    {showInput ? <Input bsSize="sm" onChange={(e) => {
                     setNewIdentific2(e.target.value)
-                  }}></input> {val.IDENTIFIC2} </td>
+                    }}></Input> : null}
+                    {val.IDENTIFIC2} </td>
 
-                  <td><input onChange={(e) => {
+                  <td>
+                    {showInput ? <Input bsSize="sm" onChange={(e) => {
                     setNewIdentific3(e.target.value)
-                  }}></input> {val.IDENTIFIC3} </td>
+                    }}></Input> : null}
+                    {val.IDENTIFIC3} </td>
 
                   <td>
-                    <button onClick={() => { editarProcesso(val.CD_PRC) }}>Confirmar</button>
+                    {showInput ? <Button color="success" size="sm" onClick={() => { editarProcesso(val.CD_PRC) }}>Alterar</Button> : null}
                   </td>
                   <td>
-                    <button>Editar</button>
-                  </td>
-                  <td>
-                    <button onClick={() => { excluirProcesso(val.CD_PRC) }}>Excluir</button>
+                    {showInput ? <Button color="danger" size="sm" onClick={() => { excluirProcesso(val.CD_PRC) }}>Excluir</Button> : null}
                   </td>
                 </tr>
               )
             })}
           </tbody>
 
-        </table>
-      </div>
+        </Table>
+
 
     </main>
   )

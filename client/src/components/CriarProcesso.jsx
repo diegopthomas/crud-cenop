@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
-import '../assets/css/componentes/botao.css'
-import '../assets/css/componentes/inputs.css'
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Check, CheckCircle, CheckLg, CheckSquareFill } from 'react-bootstrap-icons';
 
 const CriarProcesso = () => {
 
@@ -33,65 +33,76 @@ const CriarProcesso = () => {
 
     return (
 
-        <div className="formulario container input-container">
-            <p>
-                <label>Prefixo solicitante</label>
-                <input type="text" onChange={(event) => {
+            <Form>
+
+
+                <h4>Cadastrar Novo Processo</h4>
+                <FormGroup>
+
+                    <Label>Prefixo Solicitante</Label>
+                    <Input placeholder="0000" type="text" onChange={(event) => {
                     setCd_prf_und(event.target.value);
-                }}></input>
-            </p>
-            <p>
-                <label>Agrupador do Processo</label>
-                <input type="text" onChange={(event) => {
-                    setCd_agrup_prc(event.target.value);
-                }}></input>
-            </p>
-            <p>
-                <label>Processo</label>
-                <input type="text" onChange={(event) => {
-                    setCd_tip_prc(event.target.value);
-                }}></input>
-            </p>
-            <p>
-                <label>Atividade</label> 
-                <input type="text" onChange={(event) => {
-                    setCd_tip_atvd(event.target.value);
-                }}></input>
-            </p>
-            <p>
-                <label>Detalhe</label> 
-                <input type="text" onChange={(event) => {
-                    setCd_detalhe_ocr(event.target.value);
-                }}></input>
-            </p>
-            <p>
-                <label>Código do cliente</label>
-                <input type="text" onChange={(event) => {
-                    setCd_cli(event.target.value);
-                }}></input>
-            </p>
-            <p>
-                <label>Identificador 1</label>
-                <input type="text" onChange={(event) => {
-                    setIdentific1(event.target.value);
-                }}></input>
-            </p>
-            <p>
-                <label>Identificador 2</label>
-                <input type="text" onChange={(event) => {
-                    setIdentific2(event.target.value);
-                }}></input>
-            </p>
-            <p>
-                <label>Identificador 3</label>
-                <input type="text" onChange={(event) => {
-                    setIdentific3(event.target.value);
-                }}></input>
-            </p>
-            <p>
-                <button className="botao" onClick={cadastrar}>Cadastrar</button>
-            </p>
-        </div>
+                    }}></Input>
+                </FormGroup>
+
+                <FormGroup>
+                    <Label>Agrupador do Processo</Label>
+                    <Input placeholder="0" type="text" onChange={(event) => {
+                        setCd_agrup_prc(event.target.value);
+                    }}></Input>
+                </FormGroup>
+
+                <FormGroup>
+                    <Label>Processo</Label>
+                    <Input placeholder="000" type="text" onChange={(event) => {
+                        setCd_tip_prc(event.target.value);
+                    }}></Input>
+                </FormGroup>
+
+                <FormGroup>
+                    <Label>Atividade</Label>
+                    <Input placeholder="0000" type="text" onChange={(event) => {
+                        setCd_tip_atvd(event.target.value);
+                    }}></Input>
+                </FormGroup>
+
+                <FormGroup>
+                    <Label>Detalhe de Atividade</Label>
+                    <Input placeholder="00000" type="text" onChange={(event) => {
+                        setCd_detalhe_ocr(event.target.value);
+                    }}></Input>
+                </FormGroup>
+
+                <FormGroup>
+                    <Label>MCI do Cliente</Label>
+                    <Input placeholder="000000000" type="text" onChange={(event) => {
+                        setCd_cli(event.target.value);
+                    }}></Input>
+                </FormGroup>
+
+                <FormGroup>
+                    <Label>Identificador 1</Label>
+                    <Input placeholder="XXXXXXXX" type="text" onChange={(event) => {
+                        setIdentific1(event.target.value);
+                    }}></Input>
+                </FormGroup>
+
+                <FormGroup>
+                    <Label>Identificador 2</Label>
+                    <Input placeholder="Identificador 2" type="text" onChange={(event) => {
+                        setIdentific2(event.target.value);
+                    }}></Input>
+                </FormGroup>
+
+                <FormGroup>
+                    <Label>Identificador 3</Label>
+                    <Input placeholder="Identificador 3" type="text" onChange={(event) => {
+                        setIdentific3(event.target.value);
+                    }}></Input>
+                </FormGroup>
+
+                <Button className="botao" color="success" onClick={cadastrar}>Confirmar Inclusão</Button>
+            </Form>
 
     )
 }
